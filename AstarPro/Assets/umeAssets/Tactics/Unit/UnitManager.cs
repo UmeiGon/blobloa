@@ -29,7 +29,7 @@ public class UnitManager : MonoBehaviour {
         }
         return armyList;
     }
-    public List<Point2> GetStandingList()
+    public List<Point2> GetStandingPoints()
     {
         List<Point2> pointList = new List<Point2>();
         foreach (var i in unitList)
@@ -37,6 +37,15 @@ public class UnitManager : MonoBehaviour {
             pointList.Add(i.pos);
         }
         return pointList;
+    }
+    public List<Unit> GetStandingUnits(List<Point2> point_list)
+    {
+        List<Unit> retUnits=new List<Unit>();
+        foreach (var p in point_list)
+        {
+            retUnits.Add(unitList.Find(x=>x.pos==p));  
+        }
+        return retUnits;
     }
     public void AddUnit(Unit _unit)
     {

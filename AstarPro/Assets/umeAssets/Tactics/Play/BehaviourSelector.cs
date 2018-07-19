@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BehaviourSelector :SetUpMonoBehaviour
+public class BehaviourSelector :MonoBehaviour
 {
     IUnitBehaviour unitBehaviour;
     // Use this for initialization
-    protected override void SetUp()
+    private void Start()
     {
-        UnitSetUp();
+        CompornentUtility.FindCompornentOnScene<SetUpManager>().AddSetUpAction(UnitSetUp);
     }
     void UnitSetUp()
     {
@@ -17,7 +17,7 @@ public class BehaviourSelector :SetUpMonoBehaviour
         unitBehaviour.SetUp();
     }
     // Update is called once per frame
-    protected override void OUpdate()
+private void Update()
     {
         if (unitBehaviour.Update())
         {

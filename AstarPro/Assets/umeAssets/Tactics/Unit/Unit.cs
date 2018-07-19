@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Unit : SetUpMonoBehaviour
+public class Unit : MonoBehaviour
 {
     [SerializeField] Army army;
     public Army Army { get { return army; } }
@@ -24,9 +24,32 @@ public class Unit : SetUpMonoBehaviour
         Debug.Log(unitStatus);
         Debug.Log(maxUnitStatus);
         CompornentUtility.FindCompornentOnScene<UnitManager>().AddUnit(this);
+        CompornentUtility.FindCompornentOnScene<SetUpManager>().AddSetUpAction(SetUp);
     }
-    protected override void SetUp()
+    void SetUp()
     {
         transform.position = CompornentUtility.FindCompornentOnScene<BattleStage>().GetBlockPosition(pos);
+    }
+    void Death()
+    {
+
+    }
+    public void ReciveDamage(int _value)
+    {
+        if (LimitValue.IsNegative(_value)) return;
+        unitStatus.helth -= _value;
+        if (unitStatus.helth<=0)
+        {
+            Destroy(gameObject);
+        }
+    }
+    public void ReciveHeal(int _value)
+    {
+        if (LimitValue.IsNegative(_value)) return;
+        unitStatus.helth += _value;
+        if (unitStatus.helth>maxUnitStatus.helth)
+        {
+            unitStatus.helth = maxUnitStatus.helth;
+        }
     }
 }

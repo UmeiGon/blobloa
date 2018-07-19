@@ -13,27 +13,21 @@ public class UnitMoveChecker : MonoBehaviour
     }
     public List<Point2> GetCanMovePoint(Unit _unit)
     {
-        List<Point2> standingList = CompornentUtility.FindCompornentOnScene<UnitManager>().GetStandingList();
+        List<Point2> standingList = CompornentUtility.FindCompornentOnScene<UnitManager>().GetStandingPoints();
         List<Point2> canMovePoints = new List<Point2>();
         Point2 pivot = _unit.pos;
         int moveRange = _unit.GetUnitStatus.moveRange;
-
-
-        for (int i = pivot.x - moveRange; i <= pivot.x + moveRange; i++)
+        var crossPoints=StageUtility.GetCrossPoint(pivot,moveRange);
+        foreach (var point in crossPoints)
         {
-            for (int k = pivot.y - moveRange; k <= pivot.y + moveRange; k++)
-            {
-                var point = new Point2(i, k);
-                if (standingList.Contains(point))continue;
-                    var subPoint = pivot - point;
-                //動ける範囲かチェック
-                if (subPoint.AbsSum() > moveRange) continue;
-                var pathList = pathCreater.GetPath(_unit.pos, point,_unit.GetUnitStatus.stepHeight);
-                if (pathList == null) continue;
-                //実際のルートを辿り動けるかチェック
-                if (pathList.Count > moveRange) continue;
-                canMovePoints.Add(point);
-            }
+            //既にunitがいた場合continue
+            if (standingList.Contains(point)) continue;
+            //たどり着けるかチェック
+            var pathList = pathCreater.GetPath(_unit.pos, point, _unit.GetUnitStatus.stepHeight);
+            if (pathList == null) continue;
+            //unitの設定歩数で行けるかチェック
+            if (pathList.Count > moveRange) continue;
+            canMovePoints.Add(point);
         }
         return canMovePoints;
     }

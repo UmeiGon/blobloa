@@ -39,8 +39,7 @@ public class Mover
         var sub = bStage.GetBlockPosition(next_point) - myUnit.transform.position;
         float sec = 0;
         while (sec <= 1.0f)
-        {
-            Debug.Log("movenow");
+        { 
             myUnit.transform.position += sub * Time.deltaTime * moveSpeed;
             sec += Time.deltaTime * moveSpeed;
             yield return null;

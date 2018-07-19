@@ -301,6 +301,14 @@
     <Compile Include="Assets\umeAssets\Tactics\Play\BehaviourSelector.cs" />
     <Compile Include="Assets\umeAssets\Tactics\Play\IUnitBehaviour.cs" />
     <Compile Include="Assets\umeAssets\Tactics\Play\MoveBehaviour.cs" />
+    <Compile Include="Assets\umeAssets\Tactics\Skill\CrossSelecting.cs" />
+    <Compile Include="Assets\umeAssets\Tactics\Skill\Efe_Heal.cs" />
+    <Compile Include="Assets\umeAssets\Tactics\Skill\SelectingTargetType.cs" />
+    <Compile Include="Assets\umeAssets\Tactics\Skill\SingleSelecting.cs" />
+    <Compile Include="Assets\umeAssets\Tactics\Skill\Skill.cs" />
+    <Compile Include="Assets\umeAssets\Tactics\Skill\SkillDataBase.cs" />
+    <Compile Include="Assets\umeAssets\Tactics\Skill\SkillEffect.cs" />
+    <Compile Include="Assets\umeAssets\Tactics\StageUtility.cs" />
     <Compile Include="Assets\umeAssets\Tactics\Turn\Turn.cs" />
     <Compile Include="Assets\umeAssets\Tactics\Turn\TurnManager.cs" />
     <Compile Include="Assets\umeAssets\Tactics\Unit\Army.cs" />
@@ -311,8 +319,9 @@
     <Compile Include="Assets\umeAssets\Tactics\Unit\UnitStatus.cs" />
     <Compile Include="Assets\umeAssets\Utility\CompornentUtility.cs" />
     <Compile Include="Assets\umeAssets\Utility\KeyMove.cs" />
+    <Compile Include="Assets\umeAssets\Utility\LimitValue.cs" />
     <Compile Include="Assets\umeAssets\Utility\RightClickRayShot.cs" />
-    <Compile Include="Assets\umeAssets\Utility\SetUpMonoBehaviour.cs" />
+    <Compile Include="Assets\umeAssets\Utility\SetUpManager.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />
